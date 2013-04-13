@@ -10,7 +10,7 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1>Laravel</h1>
+			<h1>Laravel - this is a new things</h1>
 			<h2>A Framework For Web Artisans</h2>
 			<h2>This framework will now be deployed to pagoda! Stay tuned!</h2>
 
