@@ -1,0 +1,113 @@
+@layout('layouts/main')
+@section('navigation')
+	@parent	
+	<li><a href="/home">Home</a></li>	
+  	<li><a href="/contact_us">Contact Us</a></li>
+  	<li><a href="/listing">Place a Listing</a></li>
+@endsection
+@section('content')
+<fb:registration redirect-uri="http://collegecribs.dev/account/fbregister" 
+		fields="[
+			 {'name':'name'},			 
+			 {'name':'first_name'},			 
+			 {'name':'last_name'},			 
+			 {'name':'email'},
+			 {'name':'username', 	'description': 'Username',	'type':'text'},			 		 
+			 {'name':'password'},			 
+			 {'name':'is_owner',       'description':'Be an owner?', 'type':'checkbox'},
+		]"
+		height="450"
+		onvalidate="validate">		
+</fb:registration> 
+<!-- <fb:facepile></fb:facepile> -->
+<!-- 
+<iframe src="https://www.facebook.com/plugins/registration?
+             client_id=441124352630265&
+             redirect_uri=http%3A%2F%2Fcollegecribs.dev&
+             fields=[
+			 {'name':'name'},
+			 {'name':'email'},
+			 {'name':'username', 	'description': 'Username',	'type':'text'},
+			 {'name':'gender'},			 
+			 {'name':'password'},
+			 {'name':'is_owner',       'description':'Are you an owner?', 'type':'checkbox'},			 
+			]"
+        scrolling="auto"
+        frameborder="no"
+        style="border:none"
+        allowTransparency="true"
+        width="100%"
+        height="450">
+ -->
+ @endsection
+@section('content_js')
+<script>
+$(function(){
+	//console.log(<?php echo $_REQUEST; ?>);
+	//console.log($("input[name='first_name']"));	
+});
+
+function validate(form, cb) {
+
+	errors = {};
+	var is_valid = true;
+	var username_regex = /^[\w.-]+$/; // letters, digits, and the underscore, dash, dot
+	var password_regex = /^[A-Za-z\d]{8,30}$/;  // any upper/lowercase characters and digits, between 6 to 8 characters in total
+	
+	if (form.username == "") {
+		errors.username = "Invalid username. Please provide a username.";
+		is_valid = false;
+	}
+	else if (!username_regex.test(form.username)) {		
+		errors.username = "Invalid Username. Can only use alphanumberic, dash and underscore.";
+		is_valid = false;
+	}	
+
+	if (form.password == "") {
+		errors.password = "Invalid password. Please provide a password.";
+		is_valid = false;
+	}
+	else if (!password_regex.test(form.password)) {		
+		errors.password = "Invalid Password. Can only use any upper/lowercase characters and digits. Minimum of 8 to 30 characters only.";
+		is_valid = false;
+	}		
+
+	/*if(form.is_owner) {
+		if (form.phone == "") {
+			errors.phone = "Phone number is required for owner accounts.";
+			is_valid = false;
+		}
+		if (form.address == "") {
+			errors.address = "Address is required for owner accounts.";
+			is_valid = false;
+		}	
+	}*/
+
+	
+	if(is_valid == false) {
+		return errors;
+	}
+	else {		
+		$.ajax({
+            type: 'POST',
+            async: false,
+            data: {
+                username: form.username
+            },
+            url: "<?php echo URL::to_action('account@check_username'); ?>",
+            success: function(response) {            	
+                if (response.status < 1) {
+					// Username isn't taken, let the form submit
+					cb();
+				}
+				else {					
+					cb({username: 'That username is taken'});          
+				}
+            },
+            dataType: 'json'
+        });	
+	}
+	return is_valid
+}
+</script>
+@endsection
