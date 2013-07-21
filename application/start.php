@@ -174,7 +174,6 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 
 
 /** 
-Author: Stephanie Jose
 Custom HTML Entites link
  **/
 HTML::macro('image_link', function($url = '', $img = '', $alt = '', $param = array(), $active = true, $ssl = false)
@@ -186,5 +185,5 @@ HTML::macro('image_link', function($url = '', $img = '', $alt = '', $param = arr
 });
  
 Autoloader::map(array(
-	'Resizer'	=> __DIR__ .DS.path('bundle').'resizer/resizer.php'
+	'Resizer'	=> "{$_SERVER['DOCUMENT_ROOT']}/../bundles/resizer/resizer.php",
 ));
