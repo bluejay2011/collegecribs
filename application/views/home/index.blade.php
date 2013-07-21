@@ -43,15 +43,29 @@
       <div id="myCarousel" class="carousel slide">
         <!-- Carousel items -->
         <div class="carousel-inner">
-          @foreach($carousel as $img)
-          <div class="item">
-            <img class='carousel-img'  src="/img/property/{{$img['property_id']}}/{{$img['name']}}">      
-            <div class="carousel-caption">
-              <h4>{{$img['property_name']}}</h4>
-              <p>{{$img['description']}}</p>
+          @if($carousel)
+            @foreach($carousel as $img)
+            <div class="item">
+              <img class='carousel-img'  src="/img/property/{{$img['property_id']}}/{{$img['name']}}">      
+              <div class="carousel-caption">
+                <h4>{{$img['property_name']}}</h4>
+                <p>{{$img['description']}}</p>
+              </div>
+            </div>  
+            @endforeach
+          @else
+            <div class="active item">
+              <img data-src="holder.js/770x340/#000:#fff">      
             </div>
-          </div>  
-          @endforeach
+            <div class="item">
+              <img data-src="holder.js/770x340/#838B8B:#fff">
+              <div class="carousel-caption">
+                <h4>First Thumbnail label</h4>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              </div>
+            </div>
+          @endif
+
           <!-- <div class="active item">{{ HTML::image('img/property/b.jpg', 'College Cribs'); }}</div>
           <div class="item">{{ HTML::image_link('#', 'img/property/b.jpg', 'College Cribs'); }}</div> -->
           <!-- <div class="active item"><img data-src="holder.js/770x340"></div>

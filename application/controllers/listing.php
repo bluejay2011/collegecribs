@@ -85,11 +85,15 @@ class Listing_Controller extends Base_Controller {
 									move_uploaded_file($photos['tmp_name'][$ctr], "$uploads_dir/{$image_details['name']}");
 
 									if($ctr == 0) {
+										$thumbnail_folder = "{$_SERVER['DOCUMENT_ROOT']}/img/property/thumbnail";
+										if(!is_dir($thumbnail_folder)) {
+											mkdir($thumbnail_folder);
+										}
 										// Picture for the front page
 										$thumbnail_dir = "{$_SERVER['DOCUMENT_ROOT']}/img/property/{$property_id}/{$image_details['name']}";		
 										$success = Resizer::open( $thumbnail_dir )
 											->resize( 300 , 100 , 'exact' )
-											->save( "{$_SERVER['DOCUMENT_ROOT']}/img/property/thumbnail/{$image_details['name']}" , 90 );
+											->save( "{$thumbnail_folder}/{$image_details['name']}" , 90 );
 									}
 								}
 								else {

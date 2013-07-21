@@ -99,13 +99,13 @@
 					<div class="control-group">
 						    <label class="control-label" for="address">Address</label>
 						    <div class="controls">
-						      <input class="input-xxlarge" type="text"  id="address" placeholder="Ramcar Center, 80-82 Roces Ave, Brgy Diliman" name='data[address]'>
+						      <input class="input-xxlarge" type="text"  id="address" placeholder="1001 Makati Ave, Salcedo Village" name='data[address]'>
 						    </div>
 						</div>
 						<div class="control-group">
 						    <label class="control-label" for="city">City/Municipality</label>
 						    <div class="controls">
-						      <input type="text" id="city" placeholder="Quezon City" name='data[city]'>
+						      <input type="text" id="city" placeholder="Makati City" name='data[city]'>
 						    </div>
 						</div>	
 						<div class="control-group">
@@ -227,6 +227,11 @@ function validate_step_1()
 	var isStepValid = true;
 	var words_regex = /^[\w-\s.,]+$/;
     var num_regex = /^[\d.,]+$/;
+
+    if($('#property-type').val() == '0') {
+    	show_error('property-type', 'Please select property type');
+    	isStepValid = false;      
+    }
 
 	if($('#property-name').val() == '') {      	
       	show_error('property-name', 'Please provide property name');
