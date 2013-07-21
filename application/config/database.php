@@ -56,7 +56,7 @@ return array(
 	| All database work in Laravel is done through the PHP's PDO facilities,
 	| so make sure you have the PDO drivers for your particular database of
 	| choice installed on your machine.
-	|
+	| dummy deploy
 	*/
 
 	'connections' => array(
