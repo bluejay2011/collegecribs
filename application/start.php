@@ -185,5 +185,5 @@ HTML::macro('image_link', function($url = '', $img = '', $alt = '', $param = arr
 });
  
 Autoloader::map(array(
-	'Resizer'	=> "{$_SERVER['DOCUMENT_ROOT']}/../bundles/resizer/resizer.php",
+	'Resizer'	=> "{$_SERVER['DOCUMENT_ROOT']}/../collegecribs/bundles/resizer/resizer.php",
 ));
