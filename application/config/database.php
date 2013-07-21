@@ -69,12 +69,13 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => 'localhost',
-			'database' => 'arlynche_collegecribs',
-			'username' => 'arlynche_7W863',
-			'password' => '',
+			'host'     => 'tunnel.pagodabox.com',
+			'database' => 'collegecribs',
+			'username' => 'bobby',
+			'password' => 'R5X7gGHv',
 			'charset'  => 'utf8',
 			'prefix'   => '',
+			'port' => '3306'
 		),
 
 		'pgsql' => array(
