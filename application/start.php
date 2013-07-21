@@ -186,5 +186,5 @@ HTML::macro('image_link', function($url = '', $img = '', $alt = '', $param = arr
 });
  
 Autoloader::map(array(
-	'Resizer'	=> path('bundle').'resizer/resizer.php'
+	'Resizer'	=> __DIR__ .DS.path('bundle').'resizer/resizer.php'
 ));
