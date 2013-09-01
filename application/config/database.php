@@ -56,7 +56,7 @@ return array(
 	| All database work in Laravel is done through the PHP's PDO facilities,
 	| so make sure you have the PDO drivers for your particular database of
 	| choice installed on your machine.
-	|
+	| dummy deploy
 	*/
 
 	'connections' => array(
@@ -69,12 +69,13 @@ return array(
 
 		'mysql' => array(
 			'driver'   => 'mysql',
-			'host'     => 'localhost',
-			'database' => 'college_cribs',
-			'username' => 'root',
-			'password' => '',
+			'host'     => 'tunnel.pagodabox.com',
+			'database' => 'collegecribs',
+			'username' => 'bobby',
+			'password' => 'R5X7gGHv',
 			'charset'  => 'utf8',
 			'prefix'   => '',
+			'port' => '3306'
 		),
 
 		'pgsql' => array(
