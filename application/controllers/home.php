@@ -40,14 +40,14 @@ class Home_Controller extends Base_Controller {
 			$property_type[$type->id] = $type->description;
 		}
 		 
-		var_dump('test'); die();
+		
 		$crib_ads = Properties::getRandomCribs();
-
+		
 		$dir = "/img/ads";			
 		//$topad = Ads::where('ads_page_location', '=', 'topad')->first();
 		$ad1 = Ads::where('ads_page_location', '=', 'ad1')->first();
 		$ad2 = Ads::where('ads_page_location', '=', 'ad2')->first();	
-
+		
 		/*$property = Properties::count('id');		
 		if($property) {
 			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
