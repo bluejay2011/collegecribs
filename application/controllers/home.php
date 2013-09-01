@@ -48,21 +48,22 @@ class Home_Controller extends Base_Controller {
 		$ad1 = Ads::where('ads_page_location', '=', 'ad1')->first();
 		$ad2 = Ads::where('ads_page_location', '=', 'ad2')->first();	
 		
-		/*$property = Properties::count('id');		
+		$property = Properties::count('id');		
 		if($property) {
 			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
 			$keys = array_keys($property);	
+			var_dump($keys);
 			if(!empty($keys)) {
 				$carousel2 = PropertyImages::where_in('property_id', $keys)->where('is_primary', '=', 1)->get();
 
-				//dd($carousel2);
+				dd($carousel2);
 				foreach($carousel2 as $carousel) {
 					//var_dump($carousel);
 					$wheel[$carousel->property_id] = $carousel->attributes;
 					$wheel[$carousel->property_id]['property_name'] = $property[$carousel->property_id];
 				}
 			}
-		}*/
+		}
 	
 
 		//dd($crib_ads);
