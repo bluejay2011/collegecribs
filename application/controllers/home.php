@@ -40,34 +40,35 @@ class Home_Controller extends Base_Controller {
 			$property_type[$type->id] = $type->description;
 		}
 		 
-		
 		$crib_ads = Properties::getRandomCribs();
-		
+
 		$dir = "/img/ads";			
 		//$topad = Ads::where('ads_page_location', '=', 'topad')->first();
 		$ad1 = Ads::where('ads_page_location', '=', 'ad1')->first();
 		$ad2 = Ads::where('ads_page_location', '=', 'ad2')->first();	
-		
-		$property = Properties::count('id');		
-		var_dump($property);
-		if($property) {
-			//$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
-			$property = Properties::where('is_approved', '=', 1)->get();	
-			var_dump($property);
-			$keys = array_keys($property);	
-			var_dump($keys);
-			if(!empty($keys)) {
-				$carousel2 = PropertyImages::where_in('property_id', $keys)->where('is_primary', '=', 1)->get();
 
-				dd($carousel2);
-				foreach($carousel2 as $carousel) {
-					//var_dump($carousel);
-					$wheel[$carousel->property_id] = $carousel->attributes;
-					$wheel[$carousel->property_id]['property_name'] = $property[$carousel->property_id];
+		$property = Properties::count('id');		
+		if($property) {
+			$keys = array();
+			//$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
+			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->get();			
+			if($property) {
+				foreach($property as $temp) {
+					//$keys[$property->id] = $property->property_name;
+					$property_list[$temp->id] = $temp->name;
 				}
 			}
-		}
-	
+			
+			$keys = array_keys($property_list);				
+			if(!empty($keys)) {				
+				$carousel2 = PropertyImages::where_in('property_id', $keys)->where('is_primary', '=', 1)->get();	
+				
+				foreach($carousel2 as $carousel) {
+					$wheel[$carousel->property_id] = $carousel->attributes;
+					$wheel[$carousel->property_id]['property_name'] = $property_list[$carousel->property_id];
+				}
+			}
+		}	
 
 		//dd($crib_ads);
 		return View::make('home.index')
