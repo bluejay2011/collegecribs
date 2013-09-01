@@ -49,8 +49,11 @@ class Home_Controller extends Base_Controller {
 		$ad2 = Ads::where('ads_page_location', '=', 'ad2')->first();	
 		
 		$property = Properties::count('id');		
+		var_dump($property);
 		if($property) {
-			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
+			//$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
+			$property = Properties::where('is_approved', '=', 1)->get();	
+			var_dump($property);
 			$keys = array_keys($property);	
 			var_dump($keys);
 			if(!empty($keys)) {
