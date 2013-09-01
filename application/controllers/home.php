@@ -57,9 +57,9 @@ class Home_Controller extends Base_Controller {
 					//$keys[$property->id] = $property->property_name;
 					$property_list[$temp->id] = $temp->name;
 				}
-			}
-			
-			$keys = array_keys($property_list);				
+				$keys = array_keys($property_list);			
+			}			
+				
 			if(!empty($keys)) {				
 				$carousel2 = PropertyImages::where_in('property_id', $keys)->where('is_primary', '=', 1)->get();	
 				
