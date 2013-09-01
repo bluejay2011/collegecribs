@@ -49,9 +49,9 @@ class Home_Controller extends Base_Controller {
 
 		$property = Properties::count('id');		
 		if($property) {
-			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');
-			$keys = array_keys($property);				
-			if($keys) {
+			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
+			$keys = array_keys($property);	
+			if(!empty($keys)) {
 				$carousel2 = PropertyImages::where_in('property_id', $keys)->where('is_primary', '=', 1)->get();
 
 				//dd($carousel2);
