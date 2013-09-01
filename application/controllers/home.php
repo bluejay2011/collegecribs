@@ -40,6 +40,7 @@ class Home_Controller extends Base_Controller {
 			$property_type[$type->id] = $type->description;
 		}
 		 
+		var_dump('test'); die();
 		$crib_ads = Properties::getRandomCribs();
 
 		$dir = "/img/ads";			
@@ -47,7 +48,7 @@ class Home_Controller extends Base_Controller {
 		$ad1 = Ads::where('ads_page_location', '=', 'ad1')->first();
 		$ad2 = Ads::where('ads_page_location', '=', 'ad2')->first();	
 
-		$property = Properties::count('id');		
+		/*$property = Properties::count('id');		
 		if($property) {
 			$property = Properties::where('membership_type_id', '=', 1)->where('is_approved', '=', 1)->lists('property_name', 'id');			
 			$keys = array_keys($property);	
@@ -61,7 +62,7 @@ class Home_Controller extends Base_Controller {
 					$wheel[$carousel->property_id]['property_name'] = $property[$carousel->property_id];
 				}
 			}
-		}
+		}*/
 	
 
 		//dd($crib_ads);
