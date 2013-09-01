@@ -17,6 +17,7 @@ class Crib_Controller extends Base_Controller {
 			$property_type = array();
 			$stars = round(floatval(Properties::find($id)->property_reviews()->avg('stars')),2);
 			$count = Properties::find($id)->property_reviews()->count();
+			$property_owner = Properties::find($id)->first();
 			$property_images = PropertyImages::where('property_id', '=', $id)->get();			
 
 			foreach($types as $type) 
@@ -25,10 +26,10 @@ class Crib_Controller extends Base_Controller {
 			}
 			
 			$page = $reviews["result_count"] > 0 ? $page : 0 ;
-
+			
 			$is_crib_owner = false;
 			if(SESSION::has('user_id')) {
-				if(SESSION::get('is_owner') == true && SESSION::get('user_id') == $id) {
+				if(SESSION::get('is_owner') == true && SESSION::get('user_id') == $property_owner->user_id) {
 					$is_crib_owner = true;
 				}				
 			}		
